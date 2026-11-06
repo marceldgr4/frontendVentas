@@ -45,7 +45,7 @@ Cada módulo está diseñado para tener una **Única Responsabilidad (SRP)**:
 ### 📦 Módulos Internos
 | Módulo | Responsabilidad | Dependencias |
 | :--- | :--- | :--- |
-| `app/` | Definición de rutas, layouts y puntos de entrada de páginas. | `components`, `hooks` |
+| `../../next-app` | Definición de rutas, layouts y puntos de entrada de páginas. | `components`, `hooks` |
 | `components/ui/` | Primitivos visuales básicos (estilo shadcn). | `tailwind` |
 | `components/modules/` | Lógica de UI compleja (ej. `PawnWizard`). | `ui`, `hooks` |
 | `hooks/` | Gestión de estado asíncrono y lógica de negocio del cliente. | `services`, `store` |
