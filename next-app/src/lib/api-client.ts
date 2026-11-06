@@ -57,7 +57,6 @@ apiClient.interceptors.response.use(
             return apiClient(original);
         } catch (refreshError) {
             useAuthStore.getState().clearSession();
-            if (typeof window !== "undefined") window.location.href = "/login";
             return Promise.reject(refreshError);
         }
     }
