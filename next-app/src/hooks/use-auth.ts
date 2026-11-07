@@ -1,7 +1,7 @@
 import {authService} from "@/services/auth.service";
 import {useAuthStore} from "@/store/use-auth-store";
 import {useEffect} from "react";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 let bootstrapPromise: Promise<void> | null = null;
