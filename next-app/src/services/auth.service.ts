@@ -2,10 +2,14 @@ import {AuthResponse, LoginRequest} from "@/types/modules/auth";
 import {apiClient} from "@/lib/api-client";
 import {ApiResponse} from "@/types/api";
 import {unwrap} from "@/lib/api-error";
+import type {AuthRepository} from "@/repositories/auth.repository";
+import {selectRepository} from "@/lib/data-source";
+import {apiAuthRepository} from "@/repositories/auth.api.repository";
+import {mockAuthRepository} from "@/mocks/auth.mock"
 
 
-export const authService = {
-    async login(payload:LoginRequest): Promise<AuthResponse>{
+export const authService: AuthRepository = selectRepository(mockAuthRepository, apiAuthRepository);
+  /*  async login(payload:LoginRequest): Promise<AuthResponse>{
         const { data } = await apiClient.post<ApiResponse<AuthResponse>>("/auth/login", payload);
         return unwrap(data);
     },
@@ -16,4 +20,4 @@ export const authService = {
     async logout(): Promise<void> {
         await apiClient.post<ApiResponse<void>>("/auth/logout");
     },
-};
+};*/
