@@ -1,6 +1,8 @@
 "use client";
 
-import {useLogin} from "@/hooks/use-auth";
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
+import {useAuthBootstrap, useLogin} from "@/hooks/use-auth";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {loginSchema, type LoginFormValues} from "@/lib/validators";
@@ -13,7 +15,14 @@ import {getErrorMessage} from "@/lib/api-error";
 
 
 export default function LoginPage() {
+    const router = useRouter();
+    const status = useAuthBootstrap();
     const  { mutate,isPending, error }= useLogin();
+
+    useEffect(() => {
+        if (status === "authenticated") router.replace("/");
+    }, [status, router]);
+
     const {
         register,
         handleSubmit,

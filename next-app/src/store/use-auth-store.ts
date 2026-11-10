@@ -14,6 +14,6 @@ export const  useAuthStore = create<AuthState>((set)=>({
     accessToken:null,
     employee:null,
     status:"initializing",
-    setSession:({accessToken, employee}) => set({accessToken, employee}),
+    setSession:({accessToken, employee}) => set({accessToken, employee, status:"authenticated"}),
     clearSession:()=> set({accessToken:null, employee:null, status:"unauthenticated"}),
 }));

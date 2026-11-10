@@ -1,6 +1,6 @@
 "use client";
 import {useEffect, type ReactNode } from "react";
-import {useRouter} from "next/router";
+import {useRouter} from "next/navigation";
 import {useAuthBootstrap, useLogout} from "@/hooks/use-auth";
 import {useAuthStore} from "@/store/use-auth-store";
 import {Button} from "@/components/ui/button";
