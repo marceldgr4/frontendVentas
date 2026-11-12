@@ -6,10 +6,10 @@ interface TestAccount{
     password: string;
     profile: EmployeeProfile;
 }
-// @ts-ignore
+
 const testAccount: TestAccount []= [
     {
-        password:"admin1234",
+        password:"admin123",
         profile:{
             id:"1",
             email: "admin@test.com",
@@ -19,7 +19,7 @@ const testAccount: TestAccount []= [
         },
     },
     {
-        password:"empelado",
+        password:"empelado123",
         profile: {
             id :"2",
             email:"empleado@test.com",
