@@ -1,9 +1,8 @@
 import { apiClient } from "@/lib/api-client";
-import { ApiResponse } from "@/types/api";
-import { AuthResponse, LoginRequest } from "@/types/modules/auth";
 import {unwrap} from "@/lib/api-error";
-import {request} from "node:http";
-import {AuthRepository} from "@/repositories/auth.repository";
+import type{ ApiResponse } from "@/types/api";
+import type { AuthResponse, LoginRequest } from "@/types/modules/auth";
+import type {AuthRepository} from "@/repositories/auth.repository";
 
 export const apiAuthRepository: AuthRepository = {
     async login(request: LoginRequest ) {
@@ -11,7 +10,7 @@ export const apiAuthRepository: AuthRepository = {
         return unwrap(data);
     },
     async refresh() {
-        const { data } = await apiClient.post<ApiResponse<AuthResponse>>("/auth/refresh", request);
+        const { data } = await apiClient.post<ApiResponse<AuthResponse>>("/auth/refresh");
         return unwrap(data);
 
     },
