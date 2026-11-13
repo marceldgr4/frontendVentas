@@ -2,7 +2,7 @@ import {ArticleResponse} from "@/types/modules/article";
 import {categoryLabels, itemStatusLabels} from "@/components/modules/articles/article-labels";
 import {currencyFormatter} from "@/lib/format";
 
-export function ArticleTable({articles}:{ articles: ArticleResponse[] }){
+export function ArticlesTable({articles}:{ articles: ArticleResponse[] }){
     if(articles.length === 0){
         return <p className="text-sm text-muted-foreground">No hay articulos con ese filtros</p>;
         }

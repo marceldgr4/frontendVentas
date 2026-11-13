@@ -1,8 +1,8 @@
-import {ListArticleParams} from "@/types/modules/article";
+import {ListArticlesParams} from "@/types/modules/article";
 import {keepPreviousData, useQuery} from "@tanstack/react-query";
 import {articleService} from "@/services/article.service";
 
-export function useArticules(params:ListArticleParams){
+export function useArticles(params:ListArticlesParams){
     return useQuery({
         queryKey:["articles",params],
         queryFn:()=> articleService.findAll(params),

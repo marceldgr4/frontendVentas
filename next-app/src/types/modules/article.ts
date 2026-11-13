@@ -11,9 +11,9 @@ export interface ArticleResponse {
     price: number;
     purchasePrice: number;
 }
-export interface ListArticleParams {
+export interface ListArticlesParams {
     page: number;
-    Size: number;
+    size: number;
     term?: string;
     category?: ArticleCategory;
     lowStockOnly?: boolean;
