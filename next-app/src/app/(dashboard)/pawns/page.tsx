@@ -15,7 +15,7 @@ export default function pawnsPage(){
     const [status, setStatus]= useState<PawnStatus | "">("");
     const [page,setPage]= useState(0);
 
-    const params:ListPawnParams ={page, size: PAGE_SIZE, status:status || undefined};
+    const params: ListPawnParams = {page, size: PAGE_SIZE, status: status || undefined};
     const {data,isError,error,refetch, isPlaceholderData} = usePawns(params);
     const handleStatusChange =(event:ChangeEvent<HTMLSelectElement>)  => {
         setStatus(event.target.value as PawnStatus| "");
