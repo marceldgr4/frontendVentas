@@ -1,7 +1,7 @@
 import { useAuthStore } from "@/store/use-auth-store";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import type { ApiResponse } from "@/types/api";
-import type { AuthResponse } from "@/types/modules/auth";
+import type {AuthResponse, RefreshRequest} from "@/types/modules/auth";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -17,15 +17,24 @@ let refreshPromise: Promise<string> | null = null;
 const refreshAccessToken = (): Promise<string> => {
     if (refreshPromise) return refreshPromise;
 
+    const currentRefreshToken = useAuthStore.getState().refreshToken;
+    if(!currentRefreshToken){
+        useAuthStore.getState().clearSession();
+        return Promise.reject(new Error(" No refresh token available."));
+    }
+    const body: RefreshRequest = { refreshToken: currentRefreshToken };
+
     const request = axios
-        .post<ApiResponse<AuthResponse>>(`${baseURL}/auth/refresh`, null, {
-            withCredentials: true,
-        })
+        .post<ApiResponse<AuthResponse>>(`${baseURL}/auth/refresh`, body)
         .then((res) => {
             const session = res.data.data;
             if (!session) throw new Error("Empty refresh response");
             useAuthStore.getState().setSession(session);
             return session.accessToken;
+        })
+        .catch((err) => {
+            useAuthStore.getState().clearSession();
+            throw err;
         })
         .finally(() => {
             refreshPromise = null;
@@ -59,5 +68,5 @@ apiClient.interceptors.response.use(
             useAuthStore.getState().clearSession();
             return Promise.reject(refreshError);
         }
-    }
+    },
 );
